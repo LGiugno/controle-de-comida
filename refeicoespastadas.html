@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refeições Passadas</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Refeições Passadas</h1>
+
+        <label for="dataFiltro">Filtrar por data:</label>
+        <input type="date" id="dataFiltro" name="dataFiltro">
+        <button onclick="filtrarRefeicoes()">Filtrar</button>
+        <button onclick="window.location.href='usuario.html'" class="secondary-button">
+            Voltar
+        </button>
+
+        <div id="listaRefeicoes"></div>
+    </div>
+</body>
+</html>
