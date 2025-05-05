@@ -46,8 +46,26 @@
             <textarea id="descricao" name="descricao" rows="4" required></textarea>
         </div>
 
-        <button type="submit">Salvar Refeição</button>
-        <button onclick="window.location.href='usuario.html'" class="secondary-button">
+        <div>
+            <label for="ingredientes">Ingredientes (um por linha):</label>
+            <textarea id="ingredientes" name="ingredientes" rows="4"></textarea>
+            <small>Exemplo: 200g de frango, 1 xícara de arroz, 2 colheres de azeite</small>
+        </div>
+
+        <div id="nutricaoLoading" style="display: none; text-align: center;">
+            <p>Calculando informações nutricionais...</p>
+        </div>
+
+        <div id="nutricaoInfo" style="display: none; margin: 15px 0; padding: 10px; background: #f0f8ff; border-radius: 8px;">
+            <h3>Informação Nutricional</h3>
+            <div id="nutricaoDetalhes"></div>
+        </div>
+
+        <button type="submit" id="submitButton">
+            <span id="buttonText">Salvar Refeição</span>
+            <span id="submitLoading" style="display: none;">Carregando...</span>
+        </button>
+        <button type="button" onclick="window.location.href='usuario.html'" class="secondary-button">
             Voltar
         </button>
     </form>
