@@ -11,14 +11,18 @@
     <div class="container">
         <h1>Refeições Passadas</h1>
 
-        <label for="dataFiltro">Filtrar por data:</label>
-        <input type="date" id="dataFiltro" name="dataFiltro">
-        <button onclick="filtrarRefeicoes()">Filtrar</button>
+        <div class="filters">
+            <label for="dataFiltro">Filtrar por data:</label>
+            <input type="date" id="dataFiltro" name="dataFiltro">
+            <button onclick="filtrarRefeicoes()">Filtrar</button>
+            <button onclick="limparFiltro()" class="secondary-button">Limpar Filtro</button>
+        </div>
+
+        <div id="listaRefeicoes"></div>
+
         <button onclick="window.location.href='usuario.html'" class="secondary-button">
             Voltar
         </button>
-
-        <div id="listaRefeicoes"></div>
     </div>
 </body>
 </html>
