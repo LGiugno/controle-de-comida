@@ -1,133 +1,214 @@
-/* Reset básico */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* Fonte geral */
-  body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(to right, #e3f2fd, #bbdefb);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  /* Container ou Formulário */
-  form, .container {
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    width: 100%;
-    max-width: 500px;
-  }
-  
-  /* Títulos */
-  h1 {
-    margin-bottom: 20px;
-    color: #1565c0;
-    text-align: center;
-  }
-  
-  /* Labels e Inputs */
-  label {
-    display: block;
-    margin-bottom: 6px;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  input[type="text"],
-  input[type="password"],
-  input[type="date"],
-  input[type="time"],
-  textarea,
-  select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #bbb;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    font-size: 14px;
-    transition: 0.3s;
-  }
-  
-  input:focus,
-  textarea:focus,
-  select:focus {
-    outline: none;
-    border-color: #1976d2;
-    box-shadow: 0 0 5px rgba(25, 118, 210, 0.4);
-  }
-  
-  /* Botões */
-  button {
-    width: 100%;
-    padding: 12px;
-    background-color: #1976d2;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background-color 0.3s;
-  }
-  
-  button:hover {
-    background-color: #1565c0;
-  }
-  
-  /* Links */
-  a {
-    color: #1976d2;
-    text-decoration: none;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Lista de refeições */
-  #listaRefeicoes {
-    margin-top: 20px;
-  }
-  
-  .refeicao-item {
-    background-color: #f5f5f5;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-left: 4px solid #1976d2;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(to right, #e3f2fd, #bbdefb);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+form, .container {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 500px;
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #1565c0;
+  text-align: center;
+}
+
+h2, h3 {
+  margin: 15px 0;
+  color: #1976d2;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #333;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="time"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #1976d2;
+  box-shadow: 0 0 5px rgba(25, 118, 210, 0.4);
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #1565c0;
+}
+
+a {
+  color: #1976d2;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+#listaRefeicoes {
+  margin-top: 20px;
+}
+
+.refeicao-item {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-left: 4px solid #1976d2;
+  position: relative;
 }
 
 .refeicao-item h3 {
-    color: #1976d2;
-    margin-bottom: 10px;
+  color: #1976c0;
+  margin-bottom: 10px;
 }
 
 .refeicao-item p {
-    margin-bottom: 5px;
-    color: #333;
+  margin-bottom: 5px;
+  color: #333;
 }
-  
-  .refeicao-item strong {
-    display: block;
-    margin-bottom: 5px;
-  }
 
-/* Botão secundário */
+.btn-excluir {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: auto;
+  padding: 5px 10px;
+  background-color: #f44336 !important;
+  color: white !important;
+  font-size: 12px;
+}
+
+.btn-excluir:hover {
+  background-color: #d32f2f !important;
+}
+
 .secondary-button {
-    background-color: #f5f5f5 !important;
-    color: #1976d2 !important;
-    border: 1px solid #1976d2 !important;
-    margin-top: 10px;
+  background-color: #f5f5f5 !important;
+  color: #1976d2 !important;
+  border: 1px solid #1976d2 !important;
+  margin-top: 10px;
 }
 
 .secondary-button:hover {
-    background-color: #e3f2fd !important;
+  background-color: #e3f2fd !important;
+}
+
+.nutricao-info {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #e8f5e9;
+  border-radius: 8px;
+  border-left: 3px solid #43a047;
+}
+
+.nutricao-info ul {
+  margin-top: 5px;
+  padding-left: 20px;
+}
+
+.nutricao-info li {
+  margin-bottom: 3px;
+}
+
+small {
+  display: block;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  color: #666;
+  font-size: 0.8em;
+}
+
+.filters {
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.filters label {
+  margin-bottom: 0;
+}
+
+.filters input[type="date"] {
+  flex: 1;
+  min-width: 150px;
+}
+
+.filters button {
+  width: auto;
+  padding: 10px 15px;
+  margin-top: 0;
+}
+
+#nutricaoLoading, #submitLoading {
+  color: #1976d2;
+  font-weight: bold;
+}
+
+.empty {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+}
+
+@media (max-width: 480px) {
+  form, .container {
+      padding: 20px;
+  }
+  
+  .filters {
+      flex-direction: column;
+      align-items: stretch;
+  }
+  
+  .filters button {
+      width: 100%;
+  }
 }
