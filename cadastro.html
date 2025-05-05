@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Usuário</title>
+    <title>Cadastro</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
@@ -27,11 +27,17 @@
         </div>
 
         <div>
-            <label for="password">Senha:</label>
-            <input type="password" id="password" name="password" required>
+            <label for="password">Senha (mínimo 6 caracteres):</label>
+            <input type="password" id="password" name="password" required minlength="6">
+        </div>
+
+        <div>
+            <label for="confirmPassword">Confirme a Senha:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required minlength="6">
         </div>
 
         <button type="submit">Cadastrar</button>
+        <p>Já tem conta? <a href="index.html">Faça login aqui</a></p>
     </form>
 </body>
 </html>
