@@ -158,16 +158,41 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Banco de dados local de fallback (nutrientes por 100g)
     const LOCAL_FOOD_DB = {
-        'arroz cozido': { calories: 130, protein: 2.7, carbs: 28, fat: 0.3 },
-        'peito de frango': { calories: 165, protein: 31, carbs: 0, fat: 3.6 },
-        'batata cozida': { calories: 86, protein: 1.7, carbs: 20, fat: 0.1 },
-        'ovo cozido': { calories: 155, protein: 13, carbs: 1.1, fat: 11 },
+        'arroz cozido': { calories: 130, protein: 2.7, carbs: 28.1, fat: 0.3 },
+        'arroz branco': { calories: 130, protein: 2.7, carbs: 28.1, fat: 0.3 },
         'arroz integral': { calories: 111, protein: 2.6, carbs: 23, fat: 0.9 },
+        'peito de frango': { calories: 165, protein: 31, carbs: 0, fat: 3.6 },
         'frango': { calories: 165, protein: 31, carbs: 0, fat: 3.6 },
+        'batata cozida': { calories: 86, protein: 1.7, carbs: 20, fat: 0.1 },
         'batata': { calories: 86, protein: 1.7, carbs: 20, fat: 0.1 },
+        'ovo cozido': { calories: 155, protein: 13, carbs: 1.1, fat: 11 },
         'ovo': { calories: 155, protein: 13, carbs: 1.1, fat: 11 },
-        'arroz': { calories: 130, protein: 2.7, carbs: 28, fat: 0.3 }
+        'macarrão cozido': { calories: 131, protein: 5, carbs: 25, fat: 1 },
+        'carne bovina': { calories: 250, protein: 26, carbs: 0, fat: 15 },
+        'peixe': { calories: 150, protein: 26, carbs: 0, fat: 5 },
+        'pão integral': { calories: 247, protein: 13, carbs: 41, fat: 3.4 },
+        'queijo': { calories: 400, protein: 25, carbs: 1.3, fat: 33 },
+        'leite': { calories: 42, protein: 3.4, carbs: 5, fat: 1 },
+        'feijão cozido': { calories: 76, protein: 4.5, carbs: 13.6, fat: 0.5 }
     };
+
+    // Função melhorada para converter quantidades para gramas
+    function getQuantityFactor(quantidade) {
+        const numMatch = quantidade.match(/\d+/);
+        if (!numMatch) return 100; // Assume 100g por padrão se não conseguir extrair número
+        
+        const num = parseFloat(numMatch[0]);
+        
+        // Converte para gramas
+        if (quantidade.includes('kg')) return num * 1000; // 1kg = 1000g
+        if (quantidade.includes('oz')) return num * 28.35; // 1oz = 28.35g
+        if (quantidade.includes('ml')) return num; // Assumindo 1ml = 1g para líquidos
+        if (quantidade.includes('copo') || quantidade.includes('xícara')) return num * 240; // 1 copo/xícara ≈ 240g
+        if (quantidade.includes('colher')) return num * 15; // 1 colher de sopa ≈ 15g
+        if (quantidade.includes('fatia')) return num * 30; // 1 fatia ≈ 30g
+        
+        return num; // Assume que já está em gramas
+    }
 
     async function analisarNutricao(ingredientes) {
         const APP_ID = "d5a0b94f";
@@ -211,16 +236,21 @@ document.addEventListener("DOMContentLoaded", function () {
                     const quantidade = match[1] || '100g';
                     const alimento = match[4].trim().toLowerCase();
                     
-                    // Verifica se temos no banco local primeiro
+                    // Converte a quantidade para gramas
+                    const gramas = getQuantityFactor(quantidade);
+                    
+                    // Calcula o fator de proporção (baseado em 100g)
+                    const factor = gramas / 100;
+                    
+                    // Verifica no banco local primeiro
                     const localFood = Object.keys(LOCAL_FOOD_DB).find(key => alimento.includes(key));
                     if (localFood) {
                         const nutrientes = LOCAL_FOOD_DB[localFood];
-                        const factor = getQuantityFactor(quantidade);
                         
                         totalCalories += Math.round(nutrientes.calories * factor);
-                        totalProtein += Math.round(nutrientes.protein * factor);
-                        totalCarbs += Math.round(nutrientes.carbs * factor);
-                        totalFat += Math.round(nutrientes.fat * factor);
+                        totalProtein += parseFloat((nutrientes.protein * factor).toFixed(1));
+                        totalCarbs += parseFloat((nutrientes.carbs * factor).toFixed(1));
+                        totalFat += parseFloat((nutrientes.fat * factor).toFixed(1));
                         foodsProcessed++;
                         continue;
                     }
@@ -261,9 +291,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             return {
                 calories: Math.round(totalCalories),
-                protein: Math.round(totalProtein),
-                carbs: Math.round(totalCarbs),
-                fat: Math.round(totalFat)
+                protein: parseFloat(totalProtein.toFixed(1)),
+                carbs: parseFloat(totalCarbs.toFixed(1)),
+                fat: parseFloat(totalFat.toFixed(1))
             };
 
         } catch (error) {
@@ -285,15 +315,20 @@ document.addEventListener("DOMContentLoaded", function () {
             const quantidade = match[1] || '100g';
             const alimento = match[4].trim().toLowerCase();
             
+            // Converte a quantidade para gramas
+            const gramas = getQuantityFactor(quantidade);
+            
+            // Calcula o fator de proporção (baseado em 100g)
+            const factor = gramas / 100;
+            
             const foodKey = Object.keys(LOCAL_FOOD_DB).find(key => alimento.includes(key));
             if (foodKey) {
                 const nutrientes = LOCAL_FOOD_DB[foodKey];
-                const factor = getQuantityFactor(quantidade);
                 
                 totalCalories += Math.round(nutrientes.calories * factor);
-                totalProtein += Math.round(nutrientes.protein * factor);
-                totalCarbs += Math.round(nutrientes.carbs * factor);
-                totalFat += Math.round(nutrientes.fat * factor);
+                totalProtein += parseFloat((nutrientes.protein * factor).toFixed(1));
+                totalCarbs += parseFloat((nutrientes.carbs * factor).toFixed(1));
+                totalFat += parseFloat((nutrientes.fat * factor).toFixed(1));
                 foodsProcessed++;
             }
         });
@@ -304,17 +339,6 @@ document.addEventListener("DOMContentLoaded", function () {
             carbs: totalCarbs,
             fat: totalFat
         } : null;
-    }
-
-    // Converte quantidades para fator (100g = 1.0)
-    function getQuantityFactor(quantidade) {
-        const numMatch = quantidade.match(/\d+/);
-        if (!numMatch) return 1;
-        
-        const num = parseFloat(numMatch[0]);
-        if (quantidade.includes('kg')) return num * 10;
-        if (quantidade.includes('oz')) return num * 0.2835;
-        return num / 100; // Assume g por padrão
     }
 
     // Exibir refeições do usuário logado
