@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Refeições Passadas</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Refeições Passadas</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Refeições Passadas</h1>
-
-        <div class="filters">
-            <label for="dataFiltro">Filtrar por data:</label>
-            <input type="date" id="dataFiltro" name="dataFiltro">
-            <button onclick="filtrarRefeicoes()">Filtrar</button>
-            <button onclick="limparFiltro()" class="secondary-button">Limpar Filtro</button>
-        </div>
-
-        <div id="listaRefeicoes"></div>
-
-        <button onclick="window.location.href='usuario.html'" class="secondary-button">
-            Voltar
-        </button>
+  <div class="container fade-in-up">
+    <h1>Refeições Passadas</h1>
+    <div class="table">
+      <table id="tabelaRefeicoes">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Refeição</th>
+            <th>Itens</th>
+            <th>Calorias</th>
+            <th>Proteínas</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="tabelaRefeicoesBody"></tbody>
+      </table>
     </div>
+    <p class="helper mt-12"><a href="usuario.html">Voltar</a></p>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
