@@ -1,73 +1,57 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Refeição</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastrar Refeição</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form id="formRefeicao">
-        <h1>Cadastrar Refeição</h1>
-
-        <div>
-            <label for="tipoRefeicao">Tipo de Refeição:</label>
-            <select id="tipoRefeicao" name="tipoRefeicao" required>
-                <option value="">Selecione</option>
-                <option value="Café da manhã">Café da manhã</option>
-                <option value="Lanche da manhã">Lanche da manhã</option>
-                <option value="Almoço">Almoço</option>
-                <option value="Café da tarde">Café da tarde</option>
-                <option value="Lanche da tarde">Lanche da tarde</option>
-                <option value="Janta">Janta</option>
-                <option value="Ceia">Ceia</option>
-                <option value="Outro">Outro</option>
+  <div class="container fade-in-up">
+    <h1>Cadastrar Refeição</h1>
+    
+    <form id="refeicaoForm">
+      <label class="small">Nome da Refeição (opcional)</label>
+      <input type="text" id="nomeRefeicao" placeholder="Ex: Almoço, Jantar, Lanche">
+      
+      <div class="card mt-12">
+        <h3>Adicionar Alimento</h3>
+        
+        <label class="small">Alimento</label>
+        <select id="alimentoSelect" required>
+          <option value="">Selecione um alimento</option>
+        </select>
+        
+        <div class="row-2">
+          <div>
+            <label class="small">Quantidade</label>
+            <input type="number" id="quantidade" placeholder="Ex: 100" required min="1">
+          </div>
+          <div>
+            <label class="small">Unidade</label>
+            <select id="unidade">
+              <option value="g">g</option>
+              <option value="ml">ml</option>
+              <option value="unidade">unidade</option>
             </select>
+          </div>
         </div>
-
-        <div id="outroRefeicaoContainer" style="display: none;">
-            <label for="outroRefeicao">Descreva a refeição:</label>
-            <input type="text" id="outroRefeicao" name="outroRefeicao">
-        </div>
-
-        <div>
-            <label for="data">Data:</label>
-            <input type="date" id="data" name="data" required>
-        </div>
-
-        <div>
-            <label for="hora">Horário:</label>
-            <input type="time" id="hora" name="hora" required>
-        </div>
-
-        <div>
-            <label for="descricao">Descrição da refeição:</label>
-            <textarea id="descricao" name="descricao" rows="4" required></textarea>
-        </div>
-
-        <div>
-            <label for="ingredientes">Ingredientes (um por linha):</label>
-            <textarea id="ingredientes" name="ingredientes" rows="4"></textarea>
-            <small>Exemplo: 200g de frango, 1 xícara de arroz, 2 colheres de azeite</small>
-        </div>
-
-        <div id="nutricaoLoading" style="display: none; text-align: center;">
-            <p>Calculando informações nutricionais...</p>
-        </div>
-
-        <div id="nutricaoInfo" style="display: none; margin: 15px 0; padding: 10px; background: #f0f8ff; border-radius: 8px;">
-            <h3>Informação Nutricional</h3>
-            <div id="nutricaoDetalhes"></div>
-        </div>
-
-        <button type="submit" id="submitButton">
-            <span id="buttonText">Salvar Refeição</span>
-            <span id="submitLoading" style="display: none;">Carregando...</span>
-        </button>
-        <button type="button" onclick="window.location.href='usuario.html'" class="secondary-button">
-            Voltar
-        </button>
+        
+        <button type="button" id="adicionarAlimentoBtn" class="secondary mt-12">Adicionar Alimento</button>
+      </div>
+      
+      <label class="small">Data</label>
+      <input type="date" id="dataRefeicao" required>
+      
+      <div class="card mt-12" id="listaAlimentosCard" style="display: none;">
+        <h3>Alimentos Adicionados</h3>
+        <div id="listaAlimentos"></div>
+        <button type="submit" class="mt-12">Salvar Refeição</button>
+      </div>
     </form>
+    
+    <p class="helper mt-12"><a href="usuario.html">Voltar</a></p>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
