@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página do Usuário</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel do Usuário</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1 id="boasVindas">Seja muito bem-vindo!</h1>
-
-        <button onclick="window.location.href='cadastrorefeicao.html'">
-            Cadastrar Refeição
-        </button>
-
-        <button onclick="window.location.href='refeicoespastadas.html'">
-            Ver Refeições Passadas
-        </button>
+  <div class="container fade-in-up">
+    <h1>Painel do Usuário</h1>
+    <p class="sub">Bem-vindo, <span id="usuarioNome"></span></p>
+    
+    <div class="card mt-12">
+      <h2>Últimas Refeições</h2>
+      <ul id="listaRefeicoes"></ul>
     </div>
+    
+    <nav class="mt-12">
+      <a href="cadastrorefeicao.html">Cadastrar Refeição</a> |
+      <a href="refeicoespastadas.html">Ver Todas as Refeições</a> |
+      <a href="#" id="logoutBtn">Sair</a>
+    </nav>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
