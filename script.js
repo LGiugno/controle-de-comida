@@ -318,7 +318,7 @@ function cadastrarRefeicao(event) {
   }
   
   if (alimentosAdicionados.length === 0) {
-    alert("Adicione pelo menos um alimento!");
+    alert("Adicione pelo menos um alimento antes de salvar a refeição!");
     return;
   }
   
@@ -354,10 +354,13 @@ function cadastrarRefeicao(event) {
   // Voltar para a data atual
   const hoje = new Date().toISOString().split('T')[0];
   document.getElementById("dataRefeicao").value = hoje;
+  
+  // Limpar a lista de alimentos
+  document.getElementById("listaAlimentos").innerHTML = "";
 }
 
 // -----------------------------------------------------
-// Preencher select de alimentos
+// Preencher select de alimentos (REMOVER required)
 // -----------------------------------------------------
 function preencherSelectAlimentos() {
   const select = document.getElementById("alimentoSelect");
@@ -372,6 +375,9 @@ function preencherSelectAlimentos() {
     option.textContent = alimento.charAt(0).toUpperCase() + alimento.slice(1);
     select.appendChild(option);
   });
+  
+  // Remover o atributo required do select após preenchê-lo
+  select.removeAttribute('required');
 }
 
 // -----------------------------------------------------
